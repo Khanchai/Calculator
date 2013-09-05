@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Reflection.Emit;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,14 +11,21 @@ namespace Calculator
 {
     class Program
     {
+
         static void Main(string[] args)
         {
-            var number = 0;
             var calculator = new Calculator();
+            var plus = Calculator.Operator.Plus;
+            var minus = Calculator.Operator.Minus;
+            var multiply = Calculator.Operator.Multiply;
+            var divison = Calculator.Operator.Divison;
+
+            var listNumber = new List<int>();
 
             Console.WriteLine("Input Operator(+, -, *, /)");
             Console.Write("> ");
             var inputOperator = Console.ReadLine();
+
 
             while (true)
             {
@@ -24,21 +33,28 @@ namespace Calculator
                 Console.Write("> ");
                 var inputNumber = Console.ReadLine();
 
-                switch (inputNumber.Contains(","))
+               if(inputNumber != "exit")
                 {
-                        
+                    if (inputNumber != null && inputNumber.Contains(","))
+                    {
+//                        calculator.AddInputs();
+                    }
+                    else  
+                    {
+                        calculator.AddInput(Convert.ToInt32(inputNumber));
+                    }
                 }
 
-                if (inputNumber != "exit")
-                {
-                    calculator.AddInput(Convert.ToInt32(inputNumber));
-                }
-                else
-                {
-                    break;
-                }
+//                if (inputNumber != "exit")
+//                {
+//                    calculator.AddInput(Convert.ToInt32(inputNumber));
+//                }
+//                else
+//                {
+//                    break;
+//                }
             }
-
+         
             Console.ReadKey();
         }
     }
@@ -46,23 +62,21 @@ namespace Calculator
     class Calculator
     {
         public enum Operator { Plus, Minus, Multiply, Divison }
-        public int Number { get; set; }
 
         public void AddInput(int number)
         {
-            number = number;
 
         }
 
-        public int[] AddInputs(int[] numbers)
+        public void AddInputs(int[] numbers)
         {
-            
-            return numbers;
+
         }
 
         public void Calculate()
         {
-            
+
         }
+        
     }
 }
